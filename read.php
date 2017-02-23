@@ -9,20 +9,14 @@
 <?php
 
 // Initial variables 
-$fileName = "";
-
-function check_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
+$fileName = $dir = "";
 
 // Check fileName if isSet
-if (isset($_GET["fileName"])) {
-	$fileName = check_input($_GET["fileName"]);
-	$file_handle = fopen($fileName.'.txt', "r"); 
-	$file_string = fread($file_handle, filesize($fileName.'.txt'));
+if (isset($_GET["fileName"]) && isset($_GET["dir"])) {
+	$fileName = $_GET["fileName"];
+	$dir = $_GET["dir"];
+	$file_handle = fopen($dir.$fileName.'.txt', "r"); 
+	$file_string = fread($file_handle, filesize($dir.$fileName.'.txt'));
 	fclose($file_handle);
 }
 
@@ -31,7 +25,8 @@ if (isset($_GET["fileName"])) {
 <h1><a href="index.php">Simple Text Editor</a></h1>
 <h2>Read: <?php echo $fileName ?></h2>
 <br/>
+<div>
 <?php echo $file_string ?>
-
+</div>
 </body>
 </html>
