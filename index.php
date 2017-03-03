@@ -94,7 +94,7 @@ function editController($dir) {
 
     if ($fileName) {
         $file_handle = fopen($dir.$fileName.'.txt', "r"); 
-        $file_string = fread($file_handle, filesize($dir.$fileName.'.txt'));
+		 $file_string = fread($file_handle, filesize($dir.$fileName.'.txt'));
         fclose($file_handle);
         array_push($array, $file_string);
     }
@@ -193,8 +193,11 @@ function readView($data) {
  */
 function editView($data) {
 ?>
-<h1><a href="index.php">Simple Text Editor</a></h1>
-    
+<style>
+.link {
+    text-decoration: none;
+</style>
+<h1><a href="index.php">Simple Text Editor</a></h1>   
 <h2>Edit: <?=$data[0] ?></h2>
 
     <div>
@@ -202,7 +205,18 @@ function editView($data) {
         <?php echo '<button type="submit" name="save" value="'.$data[0].'">Save</button>'; ?>
         <button type="button"><a class="link" href="index.php">Return</a></button>
         <br/>
-        <textarea name="content" style="width:300px; height:200px;"><?=$data[1] ?></textarea>
+		<?php 
+		 if(isset($data[1])) {
+			echo  "<textarea name='content' style='width:300px; height:200px;'>s$data[1]</textarea>";
+		 }
+		 else 
+	     {
+			echo  '<textarea name="content" style="width:300px; height:200px;" placeholder="Enter something here!"></textarea>'; 
+		 }
+		 ?>
+		  
+	    
+		</textarea>
 
     </form>
     </div><?php
