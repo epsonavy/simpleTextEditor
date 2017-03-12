@@ -1,6 +1,6 @@
 # Team name: Nighthawk
 
-To run this website, make sure modify database setting on src/config/config.php 
+To run this website, make sure modify database setting on src/configs/Config.php 
 
 and then run command line at the that folder "php CreateDB.php" to initiate the database.
 
