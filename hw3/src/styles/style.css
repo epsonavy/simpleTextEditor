@@ -1,0 +1,40 @@
+table {
+	font-size:	20px;
+}
+
+h2 {
+	margin-bottom:1px;
+	padding-bottom:1px;
+}
+
+ul {
+	margin:1px;
+	padding:1px;
+}
+
+.left {
+	float:left;
+	position:relative;
+	height:1.5in;
+	top:-.17in;
+	width:1.5in;
+	padding-left: 0.2in;
+}
+
+.right {
+	height:1in;
+}
+
+a:visited {
+    color: #20B2AA;
+}
+
+
+a:hover {
+    color: #FF00FF;
+}
+
+
+a:active {
+    color: blue;
+}
