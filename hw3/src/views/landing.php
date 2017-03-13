@@ -27,7 +27,7 @@ class LandingView extends View {
 		echo $div->renderDiv("left", "Lists");
 		echo $li->render('['.$link->render($newListLink).']');
 		foreach ($data[0] as $value) {
-			$myLink = array('index.php?c=sublist&list_ID='.$value['list_ID'], $value['category']);
+			$myLink = array('index.php?c=sublist&list_ID='.$value['list_ID'].'&parent_ID='.$value['parent_ID'], $value['category']);
 			echo $li->render('<b>'.$link->render($myLink).'</b>');
 
 		}

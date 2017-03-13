@@ -28,6 +28,7 @@
         $query = "CREATE TABLE Lists (
                     list_ID INT AUTO_INCREMENT,
                     category VARCHAR(255) NOT NULL,
+                    parent_ID INT DEFAULT 0,
                     PRIMARY KEY (list_ID)
                 )";
         $result = mysqli_query($db, $query);

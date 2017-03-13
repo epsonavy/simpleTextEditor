@@ -31,7 +31,7 @@ class DisplayNoteView extends View {
 
 		echo $data[0][0]['content'];
 
-		echo $div->renderEnd();;
+		echo $div->renderEnd();
 		echo $layout->renderAfterBody();
 	}
 }

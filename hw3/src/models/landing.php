@@ -7,12 +7,13 @@ require_once('model.php');
 class LandingModel extends Model {
 
     public function getLists() {
-        $query = "SELECT list_ID, category From Lists";
+        $query = "SELECT * From Lists WHERE Lists.parent_ID = 0";
         $result = mysqli_query($this->mysql, $query);
         $array = array();
         while($row = mysqli_fetch_assoc($result)) {
             $note['list_ID'] = $row['list_ID'];
             $note['category'] = $row['category'];
+            $note['parent_ID'] = $row['parent_ID'];
             array_push($array, $note);
         }
         if($result) {
@@ -22,7 +23,7 @@ class LandingModel extends Model {
     }
 
     public function getNotes() {
-        $query = "SELECT note_ID, title, date From Notes ORDER BY date";
+        $query = "SELECT * From Notes ORDER BY date DESC";
         $result = mysqli_query($this->mysql, $query);
         $array = array();
         while($row = mysqli_fetch_assoc($result)) {
