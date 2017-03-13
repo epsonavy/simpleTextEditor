@@ -22,8 +22,8 @@ class SublistModel extends Model {
         return $array;
     }
 
-    public function getChilds($list_ID) {
-        $query = "SELECT list_ID From Lists WHERE parent_ID = ".$list_ID;
+    public function getAll($list_ID) {
+        $query = "SELECT * From Lists";
         $result = mysqli_query($this->mysql, $query);
         $array = array();
         while($row = mysqli_fetch_assoc($result)) {
@@ -36,6 +36,33 @@ class SublistModel extends Model {
             $result->free();
         }
         return $array;
+    }
+
+    public function getChilds($list_ID) {
+        $query = "SELECT * From Lists WHERE parent_ID = ".$list_ID;
+        $result = mysqli_query($this->mysql, $query);
+        $array = array();
+        while($row = mysqli_fetch_assoc($result)) {
+            $note['list_ID'] = $row['list_ID'];
+            $note['category'] = $row['category'];
+            $note['parent_ID'] = $row['parent_ID'];
+            array_push($array, $note);
+        }
+        if($result) {
+            $result->free();
+        }
+        return $array;
+    }
+
+    public function isLeaf($list_ID) {
+        $query = "SELECT * From Lists WHERE parent_ID = ".$list_ID;
+        $result = mysqli_query($this->mysql, $query);
+
+        if (empty($result)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function getLists($list_ID) {

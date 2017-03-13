@@ -15,7 +15,8 @@ class SublistView extends View {
 		$getLists = $data[0];
 		$getNotes = $data[1];
 		$getCurrentList = $data[2];
-		$getChild = $data[3];
+		$tree = $data[3];
+		$subTree = $data[4];
 
 		$h1 = new \nighthawk\hw3\elements\H1();
 		$li = new \nighthawk\hw3\elements\Li();
@@ -30,6 +31,10 @@ class SublistView extends View {
 
 		echo $layout->renderBeforeBody();
 
+		
+		echo 'Here are my tree:';
+		//print_r($subTree);
+		
 		echo $h1->render($link->render($titleLink).'/'.$link->render($sublistLink));
 
 		echo $div->renderDiv("left", "Lists");
