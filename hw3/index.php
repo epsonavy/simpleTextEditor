@@ -13,6 +13,10 @@ include 'src/models/sublist.php';
 include 'src/views/sublist.php';
 include 'src/controllers/sublist.php';
 
+include 'src/models/displayNote.php';
+include 'src/views/displayNote.php';
+include 'src/controllers/displayNote.php';
+
 // Debug use only
 ini_set('display_errors', 1);
 error_reporting(~0);
