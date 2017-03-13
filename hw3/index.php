@@ -1,31 +1,39 @@
 <?php
 
 include 'src/configs/Config.php';
-//include 'src/configs/CreateDB.php';
+// No need to include 'src/configs/CreateDB.php'; * Use on command line
 
 // Included all MVC modules
 
 include 'src/models/landing.php';
-
 include 'src/views/landing.php';
-
 include 'src/controllers/landing.php';
 
+include 'src/models/sublist.php';
+include 'src/views/sublist.php';
+include 'src/controllers/sublist.php';
 
-if(isset($_REQUEST['c'])){
+// Debug use only
+ini_set('display_errors', 1);
+error_reporting(~0);
+
+if(isset($_REQUEST['c'])) {
     $controller = $_REQUEST['c'];
-    /*
-    if($controller == "read"){
-        $readController = new nighthawk\hw3\controllers\ReadController();
-        $readController->handlerRequest($_REQUEST);
-    }else if($controller == "write"){
-        $writeController = new nighthawk\hw3\controllers\WriteController();
-        $writeController->handleRequest($_REQUEST);
-    } else if ($controller == "landing") {
-        $landingController = new nighthawk\hw3\controllers\LandingController();
-        $landingController->handleRequest($_REQUEST);
-    }*/
-}else{
+    
+    if($controller == "sublist") {
+        $sublistController = new nighthawk\hw3\controllers\SublistController();
+        $sublistController->handleRequest($_REQUEST);
+    } else if($controller == "newList") {
+        $newListController = new nighthawk\hw3\controllers\NewListController();
+        $newListController->handleRequest($_REQUEST);
+    } else if ($controller == "newNote") {
+        $newNoteController = new nighthawk\hw3\controllers\NewNoteController();
+        $newNoteController->handleRequest($_REQUEST);
+    } else if ($controller == "displayNote") {
+        $displayNoteController = new nighthawk\hw3\controllers\DisplayNoteController();
+        $displayNoteController->handleRequest($_REQUEST);
+    }
+} else {
     $landingController = new nighthawk\hw3\controllers\LandingController();
     $landingController->handleRequest($_REQUEST);
 }

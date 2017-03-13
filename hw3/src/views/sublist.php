@@ -9,7 +9,7 @@ require_once('elements/link.php');
 require_once('elements/div.php');
 require_once('layouts/html_layout.php');
 
-class LandingView extends View {
+class SublistView extends View {
 	public function render($data) {
 
 		$h1 = new \nighthawk\hw3\elements\H1();
@@ -19,11 +19,14 @@ class LandingView extends View {
 		$layout = new \nighthawk\hw3\layouts\HtmlLayout();
 
 		$titleLink = array("index.php", "Note-A-List");
+		$sublistLink = array("index.php?c=sublist&list_ID=".$data[2][0]['list_ID'], $data[2][0]['category']);
 		$newListLink = array(".", "New List");
 		$newNoteLink = array(".", "New Note");
 
 		echo $layout->renderBeforeBody();
-		echo $h1->render($link->render($titleLink));
+
+		echo $h1->render($link->render($titleLink).'/'.$link->render($sublistLink));
+
 		echo $div->renderDiv("left", "Lists");
 		echo $li->render('['.$link->render($newListLink).']');
 		foreach ($data[0] as $value) {
@@ -32,7 +35,7 @@ class LandingView extends View {
 
 		}
 		echo $div->renderEnd();;
-
+		
 		echo $div->renderDiv("right", "Notes");
 		echo $li->render('['.$link->render($newNoteLink).']');
 		foreach ($data[1] as $key => $value) {
