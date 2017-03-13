@@ -17,6 +17,7 @@ class SublistView extends View {
 		$getCurrentList = $data[2];
 		$tree = $data[3];
 		$subTree = $data[4];
+		$paths = $data[5];
 
 		$h1 = new \nighthawk\hw3\elements\H1();
 		$li = new \nighthawk\hw3\elements\Li();
@@ -25,17 +26,18 @@ class SublistView extends View {
 		$layout = new \nighthawk\hw3\layouts\HtmlLayout();
 
 		$titleLink = array("index.php", "Note-A-List");
-		$sublistLink = array("index.php?c=sublist&list_ID=".$getCurrentList[0]['list_ID'], $getCurrentList[0]['category']);
+
 		$newListLink = array(".", "New List");
 		$newNoteLink = array(".", "New Note");
 
 		echo $layout->renderBeforeBody();
 
-		
-		//echo 'Here are my tree:';
-		//print_r($subTree);
-		
-		echo $h1->render($link->render($titleLink).'/'.$link->render($sublistLink));
+		$currentPath = "";
+		foreach ($paths as $path) {
+			$tempLink = array("index.php?c=sublist&list_ID=".$path[1], $path[0]);
+			$currentPath = $currentPath.'/'.$link->render($tempLink);
+		}
+		echo $h1->render($link->render($titleLink).$currentPath);
 
 		echo $div->renderDiv("left", "Lists");
 		echo $li->render('['.$link->render($newListLink).']');
