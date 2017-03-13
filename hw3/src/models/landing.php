@@ -7,7 +7,7 @@ require_once('model.php');
 class LandingModel extends Model {
 
     public function getLists() {
-        $query = "SELECT * From Lists WHERE Lists.parent_ID = 0";
+        $query = "SELECT * From Lists WHERE Lists.parent_ID = 0 ORDER BY category";
         $result = mysqli_query($this->mysql, $query);
         $array = array();
         while($row = mysqli_fetch_assoc($result)) {
@@ -23,7 +23,7 @@ class LandingModel extends Model {
     }
 
     public function getNotes() {
-        $query = "SELECT * From Notes ORDER BY date DESC";
+        $query = "SELECT * From Notes WHERE Notes.note_ID = 0 ORDER BY date DESC";
         $result = mysqli_query($this->mysql, $query);
         $array = array();
         while($row = mysqli_fetch_assoc($result)) {

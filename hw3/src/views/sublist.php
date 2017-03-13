@@ -32,7 +32,7 @@ class SublistView extends View {
 		echo $layout->renderBeforeBody();
 
 		
-		echo 'Here are my tree:';
+		//echo 'Here are my tree:';
 		//print_r($subTree);
 		
 		echo $h1->render($link->render($titleLink).'/'.$link->render($sublistLink));

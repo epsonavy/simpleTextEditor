@@ -66,7 +66,7 @@ class SublistModel extends Model {
     }
 
     public function getLists($list_ID) {
-        $query = "SELECT * From Lists WHERE Lists.list_ID != ".$list_ID." AND Lists.parent_ID = ".$list_ID;
+        $query = "SELECT * From Lists WHERE Lists.list_ID != ".$list_ID." AND Lists.parent_ID = ".$list_ID." ORDER BY Lists.category";
         $result = mysqli_query($this->mysql, $query);
         $array = array();
         while($row = mysqli_fetch_assoc($result)) {
@@ -82,7 +82,7 @@ class SublistModel extends Model {
     }
 
     public function getNotes($list_ID) {
-        $query = "SELECT * From Notes WHERE Notes.list_ID = ".$list_ID." OR Notes.list_ID IN (SELECT list_ID FROM Lists WHERE Lists.parent_ID = ".$list_ID.") ORDER BY date DESC";
+        $query = "SELECT * From Notes WHERE Notes.list_ID = ".$list_ID." ORDER BY date DESC";
         $result = mysqli_query($this->mysql, $query);
         $array = array();
         while($row = mysqli_fetch_assoc($result)) {
