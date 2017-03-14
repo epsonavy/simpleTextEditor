@@ -26,7 +26,7 @@ class SublistView extends View {
 		$titleLink = array("index.php", "Note-A-List");
 
 		$newListLink = array("index.php?c=newList&list_ID=".$currentList[0]['list_ID'], "New List");
-		$newNoteLink = array(".", "New Note");
+		$newNoteLink = array("index.php?c=newNote&list_ID=".$currentList[0]['list_ID'], "New Note");
 
 		echo $layout->renderBeforeBody();
 

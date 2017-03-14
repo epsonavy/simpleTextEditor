@@ -16,6 +16,15 @@ class SublistModel extends Model {
         }
     }
 
+    public function addNote($title, $desc, $list_ID) {
+        $query = "INSERT INTO Notes VALUES (DEFAULT, '".$list_ID."', '".$title."', '".$desc."', DEFAULT)";
+        if (mysqli_query($this->mysql, $query)) {
+            //echo "New record created successfully";
+        } else {
+            echo mysqli_error($this->mysql);
+        }
+    }
+
     public function getCurrentList($list_ID) {
         $array = array();
         if ($list_ID == 0) {

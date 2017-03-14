@@ -22,7 +22,7 @@ class LandingView extends View {
 
 		$titleLink = array("index.php", "Note-A-List");
 		$newListLink = array("index.php?c=newList&list_ID=0", "New List");
-		$newNoteLink = array(".", "New Note");
+		$newNoteLink = array("index.php?c=newNote&list_ID=0", "New Note");
 
 		echo $layout->renderBeforeBody();
 		echo $h1->render($link->render($titleLink));

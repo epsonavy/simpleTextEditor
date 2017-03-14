@@ -7,8 +7,16 @@ require_once('controller.php');
 class SublistController extends Controller {
 
     public function handleRequest($req) { 
+
+        // Sanitize user input
         $new = isset($_REQUEST['new']) ?
             filter_var($_REQUEST['new'], FILTER_SANITIZE_STRING) : "";
+
+        $newTitle = isset($_REQUEST['title']) ?
+            filter_var($_REQUEST['title'], FILTER_SANITIZE_STRING) : "";
+
+        $newDesc = isset($_REQUEST['description']) ?
+            filter_var($_REQUEST['description'], FILTER_SANITIZE_STRING) : "";
 
         $model = new \nighthawk\hw3\models\SublistModel();
         $view = new \nighthawk\hw3\views\SublistView();
@@ -19,6 +27,11 @@ class SublistController extends Controller {
         if ($new == "") { 
         } else { 
             $model->addList($new, $_REQUEST['list_ID']);
+        }
+
+        if ($newTitle == "" || $newDesc == "") { 
+        } else { 
+            $model->addNote($newTitle, $newDesc, $_REQUEST['list_ID']);
         }
     
         array_push($array, $model->getLists($req['list_ID']));

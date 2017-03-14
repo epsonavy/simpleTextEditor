@@ -1,7 +1,10 @@
 <?php
 
 include 'src/configs/Config.php';
-// No need to include 'src/configs/CreateDB.php'; * Use on command line
+// No need to include 'src/configs/CreateDB.php';
+/*
+To run this website, make sure modify database setting on src/configs/Config.php and then run command line at the that folder "php CreateDB.php" to initiate the database.
+*/
 
 // Included all MVC modules
 
@@ -16,6 +19,10 @@ include 'src/controllers/sublist.php';
 include 'src/models/newList.php';
 include 'src/views/newList.php';
 include 'src/controllers/newList.php';
+
+include 'src/models/newNote.php';
+include 'src/views/newNote.php';
+include 'src/controllers/newNote.php';
 
 include 'src/models/displayNote.php';
 include 'src/views/displayNote.php';

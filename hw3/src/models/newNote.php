@@ -4,7 +4,7 @@ namespace nighthawk\hw3\models;
 
 require_once('model.php');
 
-class NewListModel extends Model {
+class NewNoteModel extends Model {
 
     public function getParent($list_ID) {
         $array = array();
