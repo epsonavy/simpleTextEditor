@@ -23,7 +23,7 @@ class LandingModel extends Model {
     }
 
     public function getNotes() {
-        $query = "SELECT * From Notes WHERE Notes.note_ID = 0 ORDER BY date DESC";
+        $query = "SELECT * From Notes WHERE Notes.list_ID = 0 ORDER BY date DESC";
         $result = mysqli_query($this->mysql, $query);
         $array = array();
         while($row = mysqli_fetch_assoc($result)) {
