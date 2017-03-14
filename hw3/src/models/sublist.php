@@ -6,14 +6,13 @@ require_once('model.php');
 
 class SublistModel extends Model {
 
+    // Controller will sanitize the data before execute SQL
     public function addList($title, $parent_ID) {
-        $query = "INSERT INTO Lists (category, parent_ID) VALUES ($title, $parent_ID)";
-        $result = mysqli_query($this->mysql, $query);
-
-        if (mysqli_query($conn, $sql)) {
-            echo "New record created successfully";
+        $query = "INSERT INTO Lists VALUES (DEFAULT, '".$title."', '".$parent_ID."')";
+        if (mysqli_query($this->mysql, $query)) {
+            //echo "New record created successfully";
         } else {
-            echo "Error: ".$this->mysql."<br>".mysqli_error($this->mysql);
+            echo mysqli_error($this->mysql);
         }
     }
 

@@ -7,17 +7,20 @@ require_once('controller.php');
 class SublistController extends Controller {
 
     public function handleRequest($req) { 
-
-        $new = (isset($_REQUEST['new'])) ? filter_var($req['new'], FILTER_SANITIZE_STRING) : "";
-        print_r($new);
-    
+        $new = isset($_REQUEST['new']) ?
+            filter_var($_REQUEST['new'], FILTER_SANITIZE_STRING) : "";
 
         $model = new \nighthawk\hw3\models\SublistModel();
         $view = new \nighthawk\hw3\views\SublistView();
         $array = Array();
 
         $model->initConnection();
-        
+
+        if ($new == "") { 
+        } else { 
+            $model->addList($new, $_REQUEST['list_ID']);
+        }
+    
         array_push($array, $model->getLists($req['list_ID']));
         array_push($array, $model->getNotes($req['list_ID']));
         $parents = $this->getParents($req['list_ID']);

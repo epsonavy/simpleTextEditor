@@ -8,11 +8,6 @@ class Controller {
 
     }
 
-    public function sanitize($arg) {
-    	return (isset($arg)) ?
-	        filter_var($arg, FILTER_SANITIZE_STRING) : "";
-	}
-
 	public function filter_POST($arg) {
         return filter_input(INPUT_POST, $arg, FILTER_SANITIZE_SPECIAL_CHARS);
     }
