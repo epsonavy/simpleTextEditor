@@ -11,6 +11,8 @@ require_once('layouts/html_layout.php');
 
 class LandingView extends View {
 	public function render($data) {
+		$getLists = $data[0];
+		$getNotes = $data[1];
 
 		$h1 = new \nighthawk\hw3\elements\H1();
 		$li = new \nighthawk\hw3\elements\Li();
@@ -19,14 +21,14 @@ class LandingView extends View {
 		$layout = new \nighthawk\hw3\layouts\HtmlLayout();
 
 		$titleLink = array("index.php", "Note-A-List");
-		$newListLink = array(".", "New List");
+		$newListLink = array("index.php?c=newList&list_ID=0", "New List");
 		$newNoteLink = array(".", "New Note");
 
 		echo $layout->renderBeforeBody();
 		echo $h1->render($link->render($titleLink));
 		echo $div->renderDiv("left", "Lists");
 		echo $li->render('['.$link->render($newListLink).']');
-		foreach ($data[0] as $value) {
+		foreach ($getLists as $value) {
 			$myLink = array('index.php?c=sublist&list_ID='.$value['list_ID'].'&parent_ID='.$value['parent_ID'], $value['category']);
 			echo $li->render('<b>'.$link->render($myLink).'</b>');
 
@@ -35,7 +37,7 @@ class LandingView extends View {
 
 		echo $div->renderDiv("right", "Notes");
 		echo $li->render('['.$link->render($newNoteLink).']');
-		foreach ($data[1] as $key => $value) {
+		foreach ($getNotes as $key => $value) {
 			$myLink = array('index.php?c=displayNote&note_ID='.$value['note_ID'], $value['title']);
 			echo $li->render($link->render($myLink).' '.date('Y-m-d',strtotime($value['date'])));
 		}

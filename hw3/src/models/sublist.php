@@ -75,17 +75,6 @@ class SublistModel extends Model {
         return $array;
     }
 
-    public function isLeaf($list_ID) {
-        $query = "SELECT * From Lists WHERE parent_ID = ".$list_ID;
-        $result = mysqli_query($this->mysql, $query);
-
-        if (empty($result)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public function getLists($list_ID) {
         $query = "SELECT * From Lists WHERE Lists.list_ID != ".$list_ID." AND Lists.parent_ID = ".$list_ID." ORDER BY Lists.category";
         $result = mysqli_query($this->mysql, $query);

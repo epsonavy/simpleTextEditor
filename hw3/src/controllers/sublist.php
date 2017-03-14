@@ -15,18 +15,6 @@ class SublistController extends Controller {
         
         array_push($array, $model->getLists($req['list_ID']));
         array_push($array, $model->getNotes($req['list_ID']));
-        array_push($array, $model->getCurrentList($req['list_ID']));
-
-     
-        $tree = $this->buildTree($model->getAll($req['list_ID']));
-        array_push($array, $tree);
-
-
-        $children = $this->getChildren($tree, $req['list_ID']);
-        array_push($array, $children);
-
-
-
         $parents = $this->getParents($req['list_ID']);
         array_push($array, $parents);
 

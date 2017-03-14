@@ -13,6 +13,10 @@ include 'src/models/sublist.php';
 include 'src/views/sublist.php';
 include 'src/controllers/sublist.php';
 
+include 'src/models/newList.php';
+include 'src/views/newList.php';
+include 'src/controllers/newList.php';
+
 include 'src/models/displayNote.php';
 include 'src/views/displayNote.php';
 include 'src/controllers/displayNote.php';
