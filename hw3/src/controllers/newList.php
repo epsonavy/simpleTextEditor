@@ -16,7 +16,7 @@ class NewListController extends Controller {
         $parents = $this->getParents($req['list_ID']);
         array_push($array, $parents);
 
-        //array_push($array, $model->getLists($req['list_ID']));
+        array_push($array, $model->getCurrentList($req['list_ID']));
 
         $view->render($array);
     }

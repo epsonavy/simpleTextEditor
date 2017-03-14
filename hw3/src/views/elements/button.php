@@ -6,7 +6,7 @@ require_once('element.php');
 
 class Button extends Element {
 	public function render($data) {
-		return "<button>".$data."</button>";
+		return '<button type="submit">'.$data.'</button>';
 	}
 }
 

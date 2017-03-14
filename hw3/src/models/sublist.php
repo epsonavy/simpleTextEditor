@@ -6,18 +6,35 @@ require_once('model.php');
 
 class SublistModel extends Model {
 
-    public function getCurrentList($list_ID) {
-        $query = "SELECT * From Lists WHERE list_ID = ".$list_ID;
+    public function addList($title, $parent_ID) {
+        $query = "INSERT INTO Lists (category, parent_ID) VALUES ($title, $parent_ID)";
         $result = mysqli_query($this->mysql, $query);
-        $array = array();
-        while($row = mysqli_fetch_assoc($result)) {
-            $note['list_ID'] = $row['list_ID'];
-            $note['category'] = $row['category'];
-            $note['parent_ID'] = $row['parent_ID'];
-            array_push($array, $note);
+
+        if (mysqli_query($conn, $sql)) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: ".$this->mysql."<br>".mysqli_error($this->mysql);
         }
-        if($result) {
-            $result->free();
+    }
+
+    public function getCurrentList($list_ID) {
+        $array = array();
+        if ($list_ID == 0) {
+            $note['list_ID'] = 0;
+            array_push($array, $note);
+            return $array;
+        } else {
+            $query = "SELECT * From Lists WHERE list_ID = ".$list_ID;
+            $result = mysqli_query($this->mysql, $query);
+            while($row = mysqli_fetch_assoc($result)) {
+                $note['list_ID'] = $row['list_ID'];
+                $note['category'] = $row['category'];
+                $note['parent_ID'] = $row['parent_ID'];
+                array_push($array, $note);
+            }
+            if($result) {
+                $result->free();
+            }
         }
         return $array;
     }

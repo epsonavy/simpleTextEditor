@@ -25,16 +25,20 @@ ul {
 	height:1in;
 }
 
+a {
+	color: #20B2AA;
+}
+
 a:visited {
     color: #20B2AA;
 }
 
 
 a:hover {
-    color: #FF00FF;
+    color: Red;
 }
 
 
 a:active {
-    color: blue;
+    color: #20B2AA;
 }

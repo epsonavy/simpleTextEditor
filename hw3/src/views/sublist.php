@@ -15,6 +15,7 @@ class SublistView extends View {
 		$getLists = $data[0];
 		$getNotes = $data[1];
 		$paths = $data[2];
+		$currentList= $data[3];
 
 		$h1 = new \nighthawk\hw3\elements\H1();
 		$li = new \nighthawk\hw3\elements\Li();
@@ -24,15 +25,17 @@ class SublistView extends View {
 
 		$titleLink = array("index.php", "Note-A-List");
 
-		$newListLink = array(".", "New List");
+		$newListLink = array("index.php?c=newList&list_ID=".$currentList[0]['list_ID'], "New List");
 		$newNoteLink = array(".", "New Note");
 
 		echo $layout->renderBeforeBody();
 
 		$currentPath = "";
-		foreach ($paths as $path) {
-			$tempLink = array("index.php?c=sublist&list_ID=".$path[1], $path[0]);
-			$currentPath = $currentPath.'/'.$link->render($tempLink);
+		if ($paths) {
+			foreach ($paths as $path) {
+				$tempLink = array("index.php?c=sublist&list_ID=".$path[1], $path[0]);
+				$currentPath = $currentPath.'/'.$link->render($tempLink);
+			}
 		}
 		echo $h1->render($link->render($titleLink).$currentPath);
 
