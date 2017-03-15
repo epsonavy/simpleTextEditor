@@ -17,7 +17,7 @@ class HtmlLayout extends Layout {
 	    <head>
 	        <meta charset="UTF-8">
 	        <title>Note-A-List</title>
-	        <link rel='stylesheet' href='src/styles/style.css' type='text/css'>
+	        <link rel='stylesheet' href='src/styles/style.css' type='text/css' />
 	    </head>
 	    <body>
 	    <?php
