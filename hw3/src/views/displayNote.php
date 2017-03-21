@@ -12,6 +12,9 @@ require_once('layouts/html_layout.php');
 class DisplayNoteView extends View {
 	public function render($data) {
 
+		$currentNote = $data[0];
+		$paths = $data[1];
+		
 		$h1 = new \nighthawk\hw3\elements\H1();
 		$li = new \nighthawk\hw3\elements\Li();
 		$link = new \nighthawk\hw3\elements\Link();
@@ -19,17 +22,25 @@ class DisplayNoteView extends View {
 		$layout = new \nighthawk\hw3\layouts\HtmlLayout();
 
 		$titleLink = array("index.php", "Note-A-List");
-		if($data[1]) {
-			$sublistLink = array("index.php?c=sublist&list_ID=".$data[1][0]['list_ID'], $data[1][0]['category']);
-		} else {
-			$sublistLink = array("","");
-		}
-		$newListLink = array(".", "New List");
-		$newNoteLink = array(".", "New Note");
 
 		echo $layout->renderBeforeBody();
 
-		echo $h1->render($link->render($titleLink).'/'.$link->render($sublistLink));
+		$currentPath = "";
+		if (sizeof($paths) >= 3) {
+			$paths = $this->shorterPath($paths);
+		}
+		if ($paths) {
+			foreach ($paths as $path) {
+				// shorterPath
+				if ($path[0] == "..") {
+					$tempLink = array("","..");
+				} else {
+					$tempLink = array("index.php?c=sublist&list_ID=".$path[1], $path[0]); 
+				}
+				$currentPath = $currentPath.'/'.$link->render($tempLink);
+			}
+		}
+		echo $h1->render($link->render($titleLink).$currentPath);
 
 		echo $div->renderDiv("", "Note: ".$data[0][0]['title']);
 
@@ -37,6 +48,23 @@ class DisplayNoteView extends View {
 
 		echo $div->renderEnd();
 		echo $layout->renderAfterBody();
+	}
+
+	function shorterPath($paths) {
+		// paths have 2 elements of array in each chunck. 
+		// For example, path is the one of chucks
+		// path[0] represents Category
+		// path[1] represents List_ID
+		if (sizeof($paths) < 3) {
+			return $paths;
+		} else {
+			$size = sizeof($paths);
+			$paths[0][0] = "..";
+			for ($i = 1; $i < $size - 2; ++$i) {
+				unset($paths[$i]);
+			}
+			return $paths;
+		}
 	}
 }
 
