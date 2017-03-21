@@ -26,9 +26,17 @@ class NewListView extends View {
 		echo $layout->renderBeforeBody();
 
 		$currentPath = "";
+		if (sizeof($paths) >= 3) {
+			$paths = $this->shorterPath($paths);
+		}
 		if ($paths) {
 			foreach ($paths as $path) {
-				$tempLink = array("index.php?c=sublist&list_ID=".$path[1], $path[0]);
+				// shorterPath
+				if ($path[0] == "..") {
+					$tempLink = array("","..");
+				} else {
+					$tempLink = array("index.php?c=sublist&list_ID=".$path[1], $path[0]); 
+				}
 				$currentPath = $currentPath.'/'.$link->render($tempLink);
 			}
 		}
@@ -41,6 +49,23 @@ class NewListView extends View {
 		echo $div->renderEnd();;
 		
 		echo $layout->renderAfterBody();
+	}
+
+	function shorterPath($paths) {
+		// paths have 2 elements of array in each chunck. 
+		// For example, path is the one of chucks
+		// path[0] represents Category
+		// path[1] represents List_ID
+		if (sizeof($paths) < 3) {
+			return $paths;
+		} else {
+			$size = sizeof($paths);
+			$paths[0][0] = "..";
+			for ($i = 1; $i < $size - 2; ++$i) {
+				unset($paths[$i]);
+			}
+			return $paths;
+		}
 	}
 }
 

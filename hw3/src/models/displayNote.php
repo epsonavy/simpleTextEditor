@@ -45,21 +45,6 @@ class DisplayNoteModel extends Model {
         }
         return $array;
     }
-
-    public function getCurrentList($list_ID) {
-        $query = "SELECT list_ID, category From Lists WHERE list_ID = ".$list_ID;
-        $result = mysqli_query($this->mysql, $query);
-        $array = array();
-        while($row = mysqli_fetch_assoc($result)) {
-            $note['list_ID'] = $row['list_ID'];
-            $note['category'] = $row['category'];
-            array_push($array, $note);
-        }
-        if($result) {
-            $result->free();
-        }
-        return $array;
-    }
 }
 
 ?>
