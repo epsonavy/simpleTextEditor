@@ -6,7 +6,11 @@ require_once('element.php');
 
 class Link extends Element {
 	public function render($data){
-		return "<a href='".$data[0]."'>".$data[1]."</a>";
+		if ($data[1] != "..") {
+			return "<a href='".$data[0]."'>".$data[1]."</a>"; 
+		} else {
+			return $data[1];
+		}
 	}
 }
 

@@ -19,7 +19,11 @@ class DisplayNoteView extends View {
 		$layout = new \nighthawk\hw3\layouts\HtmlLayout();
 
 		$titleLink = array("index.php", "Note-A-List");
-		$sublistLink = array("index.php?c=sublist&list_ID=".$data[1][0]['list_ID'], $data[1][0]['category']);
+		if($data[1]) {
+			$sublistLink = array("index.php?c=sublist&list_ID=".$data[1][0]['list_ID'], $data[1][0]['category']);
+		} else {
+			$sublistLink = array("","");
+		}
 		$newListLink = array(".", "New List");
 		$newNoteLink = array(".", "New Note");
 
