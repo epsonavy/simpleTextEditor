@@ -24,12 +24,12 @@ class SublistController extends Controller {
 
         $model->initConnection();
 
-        if ($new == "") { 
+        if (trim($new) == "") { 
         } else { 
             $model->addList($new, $_REQUEST['list_ID']);
         }
 
-        if ($newTitle == "" || $newDesc == "") { 
+        if (trim($newTitle) == "" || $newDesc == "") { 
         } else { 
             $model->addNote($newTitle, $newDesc, $_REQUEST['list_ID']);
         }
